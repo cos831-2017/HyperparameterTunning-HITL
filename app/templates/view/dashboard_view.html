@@ -1,0 +1,25 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% import 'macros.html' as macros %}
+
+{% block scripts %}
+  {{super()}}
+  <script src="/static/js/dash.js" charset="UTF-8"></script>
+{% endblock %}
+
+{% block content %}
+    {% include 'flash.html' %}
+
+    <div class="controls">
+
+        {% if not is_experiment_active %}
+        <input id="btn-start" class="btn btn-primary" type="button" value="Start experiment">
+        {% endif %}
+
+        {% if is_experiment_active %}
+        <input id="btn-stop" class="btn btn-secondary" type="button" value="Finalize or abort experiment">
+        {% endif %}
+
+    </div>
+{% endblock %}

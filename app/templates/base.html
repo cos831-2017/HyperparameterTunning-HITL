@@ -1,0 +1,129 @@
+{% extends "bootstrap/base.html" %}
+
+{% if not title %}
+  {% set title = 'LabBD - COS831 - 2017' %}
+{% endif %}
+
+{% if not brand %}
+  {% set brand = 'LabBD - COS831 - 2017' %}
+{% endif %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+
+  <a class="navbar-brand" href="index.html">{{ brand }}</a>
+
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarResponsive">
+
+    <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+        <a class="nav-link" href="{{ url_for('dashboard_view') }}">
+          <i class="fa fa-fw fa-dashboard"></i>
+          <span class="nav-link-text">Dashboard</span>
+        </a>
+      </li>
+
+      {% if is_experiment_active %}
+
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="New blocks">
+        <a class="nav-link" href="{{ url_for('add_blocks_view') }}">
+          <i class="fa fa-fw fa-table"></i>
+          <span class="nav-link-text">New blocks</span>
+        </a>
+      </li>
+
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Execution queue">
+        <a class="nav-link" href="{{ url_for('execution_queue_view') }}">
+          <i class="fa fa-fw fa-list"></i>
+          <span class="nav-link-text">Execution queue</span>
+        </a>
+      </li>
+
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Results">
+        <a class="nav-link" href="{{ url_for('results_view') }}">
+          <i class="fa fa-fw fa-bar-chart"></i>
+          <span class="nav-link-text">Results</span>
+        </a>
+      </li>
+      
+      {% endif %}
+
+    </ul>
+    <ul class="navbar-nav sidenav-toggler">
+      <li class="nav-item">
+        <a class="nav-link text-center" id="sidenavToggler">
+          <i class="fa fa-fw fa-angle-left"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+{% endblock %}
+
+{% block metas %}
+  {{ super() }}
+  <meta charset="utf-8">
+  <meta name="description" content="Projeto para disciplina cos831-2017">
+  <meta name="author" content="Elaine, Liliane, Leonardo e Ricardo">
+{% endblock %}
+
+{% block styles %}
+  <!-- Bootstrap core CSS-->
+  <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Page level plugin CSS-->
+  <link href="/static/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="/static/css/general.css" rel="stylesheet">
+  <!-- <link href="/static/css/bootstrap-responsive.min.css" rel="stylesheet"> -->
+{% endblock %}
+
+{% block scripts %}
+  <!-- Bootstrap core JavaScript-->
+  <script src="/static/vendor/jquery/jquery.min.js"></script>
+  <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Moment.js-->
+  <script src="/static/vendor/moment/moment.min.js"></script>
+
+  <!-- Page level plugin JavaScript-->
+  <script src="/static/vendor/chart.js/Chart.min.js"></script>
+  <script src="/static/vendor/datatables/jquery.dataTables.js"></script>
+  <script src="/static/vendor/datatables/dataTables.bootstrap4.js"></script>
+  <script src="/static/vendor/datatables/dataTables.buttons.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="/static/js/general.js"></script>
+{% endblock %}
+
+{% block body_attribs %} class="fixed-nav sticky-footer bg-dark" id="page-top" {% endblock %}
+{% block body %}
+  <div class="content-wrapper">
+
+    {{super()}}
+
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+    <footer class="sticky-footer">
+      <div class="container">
+        <div class="text-center">
+          <small>Copyright © {{ brand }}</small>
+        </div>
+      </div>
+    </footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fa fa-angle-up"></i>
+    </a>
+  </div>
+{% endblock %}

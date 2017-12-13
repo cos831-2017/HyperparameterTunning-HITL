@@ -1,0 +1,93 @@
+{% macro render_field(field) %}
+
+    {% if field.label %}
+    <div class="">
+      {{ field.label.text }}
+    </div>
+    {% endif %}
+
+    {{ field(**kwargs)|safe }}
+
+    {% for error in field.errors %}
+      <span class="help-inline errors">[{{ error }}]</span><br>
+    {% endfor %}
+
+{% endmacro %}
+
+{% macro render_hyper_numerical_field(field) %}
+<div class="container">
+  <div class="well">
+    <div class="card mb-3">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-2">
+            {{ field.description }}
+          </div>
+          {% for subfield in field.fixedOrRange %}
+            <div class="col-2">
+              {{ subfield }}
+            </div>
+            <div class="col-2">
+              {{ subfield.label }}
+            </div>
+          {% endfor %}
+          <div class="col-2">
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-3">
+            {% call render_field(field.fixo, class="form-control mr-sm-2", placeholder=field.fixo.label.text, value=field.default) %}{% endcall %}
+          </div>
+          <div class="col-3">
+            {% call render_field(field.inicial, class="form-control mr-sm-2", placeholder=field.inicial.label.text) %}{% endcall %}
+          </div>
+          <div class="col-3">
+            {% call render_field(field.final, class="form-control mr-sm-2", placeholder=field.final.label.text) %}{% endcall %}
+          </div>
+          <div class="col-3">
+            {% call render_field(field.step, class="form-control mr-sm-2", placeholder=field.step.label.text) %}{% endcall %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endmacro %}
+
+{% macro render_hyper_discrete_field(field) %}
+<div class="container">
+  <div class="well">
+    <div class="card mb-3">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-2">
+            {{ field.description }}
+          </div>
+          {% for subfield in field.fixedOrMultiple %}
+            <div class="col-2">
+              {{ subfield }}
+            </div>
+            <div class="col-2">
+              {{ subfield.label }}
+            </div>
+          {% endfor %}
+          <div class="col-2">
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-6">
+            {% call render_field(field.fixo, class="form-control mr-sm-2", placeholder=field.fixo.label.text) %}{% endcall %}
+          </div>
+          <div class="col-6">
+            {% call render_field(field.multiple, class="form-control mr-sm-2", placeholder=field.multiple.label.text) %}{% endcall %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endmacro %}

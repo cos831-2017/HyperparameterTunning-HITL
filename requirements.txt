@@ -1,0 +1,13 @@
+wheel
+flask
+flask-wtf
+flask-bootstrap
+matplotlib
+pyspark
+pandas
+spark_sklearn
+scipy
+keras
+tensorflow
+redis
+pymonetdb

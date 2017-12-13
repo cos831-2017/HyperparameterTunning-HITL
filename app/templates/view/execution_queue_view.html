@@ -1,0 +1,44 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% import 'macros.html' as macros %}
+
+{% block scripts %}
+  {{super()}}
+  <script src="/static/js/queue.js" charset="UTF-8"></script>
+{% endblock %}
+
+{% block content %}
+    {% include 'flash.html' %}
+
+
+    <div class="card mb-3">
+      <div class="card-header"><i class="fa fa-fw fa-table"></i> Block queue</div>
+      <div class="card-body">
+        <table id="block-table" class="display" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>ID</th>
+                        <th>Size</th>
+                        <th>Highest Accuracy</th>
+                        <th>Status</th>
+                        <th>Steer</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Position</th>
+                        <th>ID</th>
+                        <th>Size</th>
+                        <th>Highest Accuracy</th>
+                        <th>Status</th>
+                        <th>Steer</th>
+                    </tr>
+                </tfoot>
+            </table>
+      </div>
+    </div>
+
+
+{% endblock %}

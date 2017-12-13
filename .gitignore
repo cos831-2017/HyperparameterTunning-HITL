@@ -99,3 +99,12 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# Diretório para a instalação local do servidor
+flask/**
+
+# Conteúdo da pasta temporária (logs e etc)
+tmp/*
+
+# Diretório para a banco de prov
+db/*

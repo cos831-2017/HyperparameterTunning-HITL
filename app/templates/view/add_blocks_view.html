@@ -1,0 +1,43 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% import 'macros.html' as macros %}
+
+{% block scripts %}
+  {{super()}}
+{% endblock %}
+
+{% block content %}
+    {% include 'flash.html' %}
+
+        <form class="form-inline my-2 my-lg-0" action="" method="post" name="post">
+            {{ form.hidden_tag() }}
+
+            <div class="col-10">
+
+            {{ macros.render_hyper_numerical_field(form.batch) }}
+
+            {{ macros.render_hyper_numerical_field(form.epoch) }}
+
+            {{ macros.render_hyper_numerical_field(form.learn_rate) }}
+
+            {{ macros.render_hyper_numerical_field(form.momentum) }}
+
+            {{ macros.render_hyper_discrete_field(form.init_mode) }}
+
+            {{ macros.render_hyper_discrete_field(form.optimizer) }}
+
+            </div>
+
+            <div class="col-2">
+
+              {{ macros.render_field(form.batchOrSingle, class="form-control mr-sm-2", placeholder=form.batchOrSingle.label.text) }}
+
+              {{ macros.render_field(form.split_size, class="form-control mr-sm-2", placeholder=form.split_size.label.text, value=form.split_size.default) }}
+
+              <div class="controls">
+                  <input class="btn btn-primary" type="submit" value="Add to queue">
+              </div>
+            </div>
+        </form>
+{% endblock %}
